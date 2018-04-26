@@ -1,0 +1,23 @@
+{
+    "name": "sabanovin/php",
+    "type": "library",
+    "description": "A PHP wrapper for SabaNovin's REST API",
+    "keywords": ["sabanovin", "sms", "api"],
+    "homepage": "http://github.com/SabaNovin/sabanovin-php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "SabaNovin API Team",
+            "email": "support@sabanovin.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SabaNovin\\": "src/"
+        }
+    },
+    "minimum-stability" : "stable"
+}
