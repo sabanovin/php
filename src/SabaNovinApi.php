@@ -61,9 +61,9 @@ class SabaNovinApi
         if ($code != 200 && is_null($json_response)) {
             throw new HttpException("Request have errors", $code);
         } else {
-            $json_return = $json_response->return;
-            if ($json_return->status != 200) {
-                throw new ApiException($json_return->message, $json_return->status);
+            $json_return = $json_response->status;
+            if ($json_return->code != 200) {
+                throw new ApiException($json_return->message, $json_return->code);
             }
             return $json_response->entries;
         }
@@ -94,8 +94,8 @@ class SabaNovinApi
         $repeat = count($to);
         $path   = $this->get_path("send_array");
         $params = array(
-            "to" => json_encode($receptor),
             "gateway" => $gateway,
+            "to" => json_encode($to),
             "text" => json_encode($text),
         );
         return $this->execute($path, $params);
