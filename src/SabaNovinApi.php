@@ -65,7 +65,7 @@ class SabaNovinApi
             if ($json_return->code != 200) {
                 throw new ApiException($json_return->message, $json_return->code);
             }
-            return $json_response->entries;
+            return $json_response;
         }
     }
 

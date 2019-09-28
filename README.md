@@ -23,12 +23,12 @@ try{
 	$text = "متن تست";
 	$to = array("09370000000", "09120000000");
 	$result = $api->Send($gateway, $to, $text);
-	if($result){
-		foreach($result as $res) {
-			echo "reference_id = $res->reference_id";
-			echo "status   = $res->status";
-			echo "mobile   = $res->mobile";
-			echo "datetime = $res->datetime";
+	if($result->entries){
+		foreach($result->entries as $entry) {
+			echo "reference_id = $entry->reference_id";
+			echo "status   = $entry->status";
+			echo "mobile   = $entry->mobile";
+			echo "datetime = $entry->datetime";
 		}		
 	}
 }
