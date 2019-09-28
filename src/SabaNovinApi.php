@@ -114,7 +114,7 @@ class SabaNovinApi
     {
         $path = $this->get_path("status");
 		    $params = array(
-            "batch_id" => $reference_id
+            "batch_id" => $batch_id
         );
         return $this->execute($path,$params);
     }
