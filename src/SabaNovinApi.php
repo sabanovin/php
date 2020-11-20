@@ -24,12 +24,12 @@ class SabaNovinApi
         $this->apiKey = $apiKey;
     }
 
-	protected function get_path($method, $base = 'sms')
+    protected function get_path($method, $base = 'sms')
     {
         return sprintf(self::API_URL, $this->apiKey, $base, $method);
     }
 
-	protected function execute($url, $data = null)
+    protected function execute($url, $data = null)
     {
         $headers = array(
             'Accept: application/json',
@@ -46,6 +46,8 @@ class SabaNovinApi
         curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 10);
+        curl_setopt($handle, CURLOPT_TIMEOUT, 30);
         curl_setopt($handle, CURLOPT_POST, true);
         curl_setopt($handle, CURLOPT_POSTFIELDS, $fields_string);
 
@@ -104,19 +106,19 @@ class SabaNovinApi
     public function Status($reference_id)
     {
         $path = $this->get_path("status");
-		    $params = array(
+        $params = array(
             "reference_id" => is_array($reference_id) ? implode(",", $reference_id) : $reference_id
         );
-        return $this->execute($path,$params);
+        return $this->execute($path, $params);
     }
 
     public function StatusByBatchId($batch_id)
     {
         $path = $this->get_path("status");
-		    $params = array(
+        $params = array(
             "batch_id" => $batch_id
         );
-        return $this->execute($path,$params);
+        return $this->execute($path, $params);
     }
 
     public function Receive($gateway, $is_read = 0)
@@ -128,6 +130,4 @@ class SabaNovinApi
         );
         return $this->execute($path, $params);
     }
-
 }
-?>
